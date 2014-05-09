@@ -1,9 +1,13 @@
 'use strict';
 
+var artists = global.nss.db.collection('artists');
+
 exports.index = (req, res)=>{
-  res.render('home/index', {title: 'Node.js: Home'});
+  artists.find().toArray((err, records)=>{
+    res.render('home/index', {artists: records, title: 'Node Tunes: Artists'});
+  });
 };
 
 exports.help = (req, res)=>{
-  res.render('home/help', {title: 'Node.js: Help'});
+  res.render('home/help', {title: 'Node Tunes: Help'});
 };
