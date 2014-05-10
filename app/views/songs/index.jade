@@ -1,0 +1,11 @@
+extends ../shared/template
+
+block content
+  h1 Albums
+
+  .songs-container
+    .song
+      each album in albums
+        .name= album.albumName
+        .image
+          img(src='#')

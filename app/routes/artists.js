@@ -5,8 +5,11 @@ var multiparty = require('multiparty');
 var artists = global.nss.db.collection('artists');
 
 exports.index = (req, res)=>{
-  res.render('artists/index', {title: 'Node Tunes: Artists'});
+  artists.find().toArray((err, records)=>{
+    res.render('artists/index', {artists: records, title: 'Node Tunes: Artists'});
+  });
 };
+
 
 exports.create = (req, res)=>{
   var form = new multiparty.Form();
@@ -23,9 +26,9 @@ exports.create = (req, res)=>{
         artist.artistPhoto = (p.originalFilename);
       });
 
-      artists.save(artist, ()=>res.redirect('/'));
+      artists.save(artist, ()=>res.redirect('/confirm'));
     }else{
-      res.redirect('/');
+      res.redirect('/error');
     }
   });
 };

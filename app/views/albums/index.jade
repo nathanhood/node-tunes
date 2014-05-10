@@ -2,3 +2,10 @@ extends ../shared/template
 
 block content
   h1 Albums
+
+  .albums-container
+    .album
+      each album in albums
+        .name= album.albumName
+        .image
+          img(src='/img/#{album.artistName}/#{album.albumName}/#{album.albumPhoto}')
