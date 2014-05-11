@@ -4,8 +4,14 @@ block content
   h1 Albums
 
   .songs-container
-    .song
-      each album in albums
-        .name= album.albumName
-        .image
-          img(src='#')
+    each song in songs
+      .song
+        .song-name= song.songName
+        .artist-name= song.artistName
+        .album-name= song.albumName
+        .album-photo
+          img(src='/img/#{song.artistName}/#{song.albumName}/#{song.albumPhoto}')
+        .artist-photo
+          img(src='/img/#{song.artistName}/#{song.artistPhoto}')
+        .audio
+          audio(src='/audios/#{song.artistName}/#{song.albumName}/#{song.songFile}', type='audio/mp3', controls=true)

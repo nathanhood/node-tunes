@@ -3,32 +3,35 @@ extends ../shared/template
 block content
   h1 Node Tunes
 
-  h2 That Record Already Exists.
+  .forms
+    #error-alert Record Already Exists
+    .artists-form
+      h3 Add Artist
+      form(method='POST', action='/artists', enctype='multipart/form-data')
+        input.name(type='text', name='artistName', placeholder='Artist Name')
+        input.file(type='file', name='artistPhoto')
+        button.button.button-border Add Artist
 
-  .artists-form
-    form(method='POST', action='/artists', enctype='multipart/form-data')
-      input.name(type='text', name='artistName', placeholder='Artist Name')
-      input.file(type='file', name='artistPhoto')
-      button.button.button-border Add Artist
+    .albums-form
+      h3 Add Album
+      form(method='POST', action='/albums', enctype='multipart/form-data')
+        input.name(type='text', name='albumName', placeholder='Album Name')
+        select.artist(name='artistName')
+          each artist in artists
+            option= artist.artistName
+        input.file(type='file', name='albumPhoto')
+        button.button.button-border Add Album
 
-  .albums-form
-    form(method='POST', action='/albums', enctype='multipart/form-data')
-      select.artist(name='artistName')
-        each artist in artists
-          option= artist.artistName
-      input.name(type='text', name='albumName', placeholder='Album Name')
-      input.file(type='file', name='albumPhoto')
-      button.button.button-border Add Album
-
-  .songs-form
-    form(method='POST', action='/songs', enctype='multipart/form-data')
-      input.name(type='text', name='songName', placeholder='Song Name')
-      select.artist(name='artistName')
-        each artist in artists
-          option= artist.artistName
-      select.album(name='albumName')
-        each album in albums
-          option= album.albumName
-      input.genre(type='text', name='genre', placeholder='Genre1, Genre2...')
-      input.file(type='file', name='songFile')
-      button.button.button-border Add Song
+    .songs-form
+      h3 Add Song
+      form(method='POST', action='/songs', enctype='multipart/form-data')
+        input.name(type='text', name='songName', placeholder='Song Name')
+        select.artist(name='artistName')
+          each artist in artists
+            option= artist.artistName
+        select.album(name='albumName')
+          each album in albums
+            option= album.albumName
+        input.genre(type='text', name='genres', placeholder='Genre1, Genre2...')
+        input.file(type='file', name='songFile')
+        button.button.button-border Add Song

@@ -18,7 +18,7 @@ exports.help = (req, res)=>{
 exports.confirm = (req, res)=>{
   artists.find().toArray((err, artists)=>{
     albums.find().toArray((err, albums)=>{
-      res.render('home/confirm', {artists: artists,albums: albums, title: 'Node Tunes: Home'});
+      res.render('home/confirm', {artists: artists, albums: albums, title: 'Node Tunes: Home'});
     });
   });
 };
@@ -26,7 +26,7 @@ exports.confirm = (req, res)=>{
 exports.error = (req, res)=>{
   artists.find().toArray((err, artists)=>{
     albums.find().toArray((err, albums)=>{
-      res.render('home/error', {artists: artists,albums: albums, title: 'Node Tunes: Home'});
+      res.render('home/error', {artists: artists, albums: albums, title: 'Node Tunes: Home'});
     });
   });
 };
