@@ -3,10 +3,10 @@ extends ../shared/template
 block content
   h1 Artists
 
-
   .artists-container
-    .artist
-      each artist in artists
-        .name= artist.artistName
-        .image
+    each artist in artists
+      .artist
+        .artist-name
+          a(href='/artists/#{artist._id}')= artist.artistName
+        .artist-image
           img(src='/img/#{artist.artistName}/#{artist.artistPhoto}')

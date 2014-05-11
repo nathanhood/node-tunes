@@ -16,7 +16,7 @@ block content
       h3 Add Album
       form(method='POST', action='/albums', enctype='multipart/form-data')
         input.name(type='text', name='albumName', placeholder='Album Name')
-        select.artist(name='artistName')
+        select.artist-select(name='artistName')
           each artist in artists
             option= artist.artistName
         input.file(type='file', name='albumPhoto')
@@ -26,10 +26,10 @@ block content
       h3 Add Song
       form(method='POST', action='/songs', enctype='multipart/form-data')
         input.name(type='text', name='songName', placeholder='Song Name')
-        select.artist(name='artistName')
+        select.artist-select(name='artistName')
           each artist in artists
             option= artist.artistName
-        select.album(name='albumName')
+        select.album-select(name='albumName')
           each album in albums
             option= album.albumName
         input.genre(type='text', name='genres', placeholder='Genre1, Genre2...')

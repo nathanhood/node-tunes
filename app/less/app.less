@@ -1,5 +1,6 @@
 @import url(http://fonts.googleapis.com/css?family=Raleway:400,700);
 @import url(http://fonts.googleapis.com/css?family=Open+Sans);
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400);
 
 html, body {
   height: 100%;
@@ -97,7 +98,7 @@ h1 {
   line-height: .75em;
 }
 
-.forms select {
+.artist-select, .album-select {
   margin-bottom: 10px;
   font-family: 'Open Sans', sans-serif;
   font-size: 1.5em;
@@ -110,4 +111,205 @@ h1 {
 
 .file {
   margin-bottom: 15px;
+}
+
+.artists-container {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1000px;
+}
+
+.artist {
+  font-size: .8em;
+  border-radius: 10px;
+  width: 450px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 20px;
+  padding-right: 10px;
+  background-image: url('../img/background/black-linen-2.png');
+  background-color: rgba(251, 250, 219, 0.05);
+  display: inline-block;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.artist-image img {
+  height: 140px;
+  max-width: 300px;
+  border-radius: 8px;
+}
+
+
+
+.artist-name a {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 3em;
+  text-decoration: none;
+  color: black;
+}
+
+.artist-name a:hover {
+  color: #ea8f3e;
+}
+
+.artist-name {
+  margin-bottom: 5px;
+}
+
+#album-main-image {
+  margin-left: auto;
+  margin-right: auto;
+  width: 250px;
+  height: 250px;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.albums-container {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1000px;
+}
+
+.album {
+  font-size: .8em;
+  border-radius: 10px;
+  width: 600px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 20px;
+  padding-right: 10px;
+  background-image: url('../img/background/black-linen-2.png');
+  background-color: rgba(251, 250, 219, 0.05);
+  display: inline-block;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.album-image img {
+  height: 100%;
+  width: 120px;
+  border-radius: 8px;
+}
+
+.album-image {
+  display: inline-block;
+  height: 120px;
+  width: 120px;
+  vertical-align: middle;
+  margin-left: 50px;
+}
+
+.album-name {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 5em;
+  margin-bottom: 5px;
+  display: inline;
+  margin-right: 50px;
+  margin-left: 50px;
+  vertical-align: middle;
+}
+
+.album-name a {
+  text-decoration: none;
+  color: black;
+}
+
+.album-name a:hover {
+  color: #ea8f3e;
+}
+
+.songs-container {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1000px;
+}
+
+.song {
+  font-size: .8em;
+  border-radius: 10px;
+  width: 1000px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 20px;
+  padding-right: 10px;
+  background-image: url('../img/background/black-linen-2.png');
+  background-color: rgba(251, 250, 219, 0.05);
+  display: inline-block;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.songs-container .album-image img {
+  height: 100%;
+  width: 60px;
+  border-radius: 8px;
+}
+
+.songs-container .artist-image img {
+  height: 60px;
+  max-width: 120px;
+  border-radius: 8px;
+}
+
+.songs-container .album-image {
+  display: inline-block;
+  height: 60px;
+  width: 60px;
+  margin: 0 0;
+  vertical-align: middle;
+}
+
+.songs-container .artist-image {
+  display: inline-block;
+  height: 60px;
+  max-width: 120px;
+  vertical-align: middle;
+  margin: 0 20px;
+}
+
+// .songs-container .album-name {
+//   font-family: 'Source Sans Pro', sans-serif;
+//   font-size: 1.3em;
+//   margin: 0 0;
+//   display: inline;
+//   vertical-align: middle;
+// }
+
+// .songs-container .artist-name {
+//   font-family: 'Source Sans Pro', sans-serif;
+//   font-size: 1.3em;
+//   margin-bottom: 5px;
+//   display: inline;
+//   vertical-align: middle;
+//   margin-left: 15px;
+// }
+
+.songs-container .song-name {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 1.5em;
+  margin-bottom: 5px;
+  margin-right: 30px;
+  margin-left: 40px;
+  display: inline;
+  vertical-align: middle;
+  color: white;
+}
+
+.song .audio {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 100px;
 }

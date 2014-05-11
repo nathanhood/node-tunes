@@ -4,8 +4,9 @@ block content
   h1 Albums
 
   .albums-container
-    .album
-      each album in albums
-        .name= album.albumName
-        .image
+    each album in albums
+      .album
+        .album-name
+          a(href='/albums/#{album._id}')= album.albumName
+        .album-image
           img(src='/img/#{album.artistName}/#{album.albumName}/#{album.albumPhoto}')

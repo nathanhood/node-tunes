@@ -1,17 +1,17 @@
 extends ../shared/template
 
 block content
-  h1 Albums
+  h1 Songs
 
   .songs-container
     each song in songs
       .song
-        .song-name= song.songName
-        .artist-name= song.artistName
-        .album-name= song.albumName
-        .album-photo
-          img(src='/img/#{song.artistName}/#{song.albumName}/#{song.albumPhoto}')
-        .artist-photo
+        .song-name #{song.songName}
+        //- .artist-name= song.artistName
+        .artist-image
           img(src='/img/#{song.artistName}/#{song.artistPhoto}')
+        //- .album-name "#{song.albumName}"
+        .album-image
+          img(src='/img/#{song.artistName}/#{song.albumName}/#{song.albumPhoto}')
         .audio
           audio(src='/audios/#{song.artistName}/#{song.albumName}/#{song.songFile}', type='audio/mp3', controls=true)

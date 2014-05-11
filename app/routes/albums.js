@@ -3,10 +3,11 @@
 var fs = require('fs');
 var multiparty = require('multiparty');
 var albums = global.nss.db.collection('albums');
-// var artists = global.nss.db.collection('artists');
+var songs = global.nss.db.collection('songs');
+var Mongo = require('mongodb');
 
 exports.index = (req, res)=>{
-  albums.find().toArray((err, records)=>{
+  albums.find().sort({albumName: 1}).toArray((err, records)=>{
     res.render('albums/index', {albums: records, title: 'Node Tunes: Albums'});
   });
 };
@@ -33,5 +34,15 @@ exports.create = (req, res)=>{
     }else{
       res.redirect('/');
     }
+  });
+};
+
+exports.show = (req, res)=>{
+  var _id = Mongo.ObjectID(req.params.id);
+
+  albums.find({_id:_id}).toArray((err, albumData)=>{
+    songs.find({albumId:_id}).toArray((err, songData)=>{
+      res.render('albums/show', {songs: songData, album: albumData, title: 'Node Tunes: '});
+    });
   });
 };

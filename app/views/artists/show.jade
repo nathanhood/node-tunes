@@ -1,0 +1,11 @@
+extends ../shared/template
+
+block content
+  h1= artist[0].artistName
+  .artist-image
+    img(src='/img/#{song.artistName}/#{song.artistPhoto}')
+  
+        .album-image
+          img(src='/img/#{song.artistName}/#{song.albumName}/#{song.albumPhoto}')
+        .audio
+          audio(src='/audios/#{song.artistName}/#{song.albumName}/#{song.songFile}', type='audio/mp3', controls=true)

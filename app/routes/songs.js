@@ -18,48 +18,45 @@ exports.index = (req, res)=>{
 exports.create = (req, res)=>{
   var form = new multiparty.Form();
 
-  // albums.find({albumName: 'self-titled'}).toArray((err, albums)=>{
-  //   console.log('-----------------------');
-  //   console.log(albums[0].albumPhoto);
-  //   artists.find({artistName: 'self-titled'}).toArray((err, artists)=>{
-      form.parse(req, (err, fields, files)=>{
 
-        var songName = fields.songName[0];
-        var normalized = songName.split(' ').map(word=>word.trim()).map(word=>word.toLowerCase()).join('');
-        var extension = path.extname(files.songFile[0].path);
-        var artistName = fields.artistName[0];
-        var albumName = fields.albumName[0];
-        var newPath = `/audios/${artistName}/${albumName}/${normalized}${extension}`;
-        var genres = fields.genres[0].split(',').map(word=>word.trim()).map(word=>word.toLowerCase());
+  form.parse(req, (err, fields, files)=>{
 
-        var song = {};
+    var songName = fields.songName[0];
+    var normalized = songName.split(' ').map(word=>word.trim()).map(word=>word.toLowerCase()).join('');
+    var extension = path.extname(files.songFile[0].path);
+    var artistName = fields.artistName[0];
+    var albumName = fields.albumName[0];
+    var newPath = `/audios/${artistName}/${albumName}/${normalized}${extension}`;
+    var genres = fields.genres[0].split(',').map(word=>word.trim()).map(word=>word.toLowerCase());
 
-        albums.find({albumName: `${albumName}`}).toArray((err, albums)=>{
-          artists.find({artistName: `${artistName}`}).toArray((err, artists)=>{
+    var song = {};
 
-            song.albumPhoto = albums[0].albumPhoto;
-            song.artistPhoto = artists[0].artistPhoto;
-            song.songName = songName;
-            song.songFile = `${normalized}${extension}`;
-            song.artistName = artistName;
-            song.albumName = albumName;
-            song.genres = genres;
+    albums.find({albumName: `${albumName}`}).toArray((err, albums)=>{
+      artists.find({artistName: `${artistName}`}).toArray((err, artists)=>{
+
+        song.albumId = albums[0]._id;
+        song.artistId = artists[0]._id;
+        song.albumPhoto = albums[0].albumPhoto;
+        song.artistPhoto = artists[0].artistPhoto;
+        song.songName = songName;
+        song.songFile = `${normalized}${extension}`;
+        song.artistName = artistName;
+        song.albumName = albumName;
+        song.genres = genres;
 
 
-            if(!fs.exists(`${__dirname}/../static/audios/${artistName}`)){
-              fs.mkdirSync(`${__dirname}/../static/audios/${artistName}`);
-            }
+        if(!fs.existsSync(`${__dirname}/../static/audios/${artistName}`)){
+          fs.mkdirSync(`${__dirname}/../static/audios/${artistName}`);
+        }
 
-            if(!fs.exists(`${__dirname}/../static/audios/${artistName}/${albumName}`)){
-              fs.mkdirSync(`${__dirname}/../static/audios/${artistName}/${albumName}`);
-            }
+        if(!fs.existsSync(`${__dirname}/../static/audios/${artistName}/${albumName}`)){
+          fs.mkdirSync(`${__dirname}/../static/audios/${artistName}/${albumName}`);
+        }
+        
+        fs.renameSync(files.songFile[0].path, `${__dirname}/../static/audios/${artistName}/${albumName}/${normalized}${extension}`);
+        songs.save(song, ()=>res.redirect('/confirm'));
 
-            fs.renameSync(files.songFile[0].path, `${__dirname}/../static/audios/${artistName}/${albumName}/${normalized}${extension}`);
-            songs.save(song, ()=>res.redirect('/confirm'));
-
-          });
-        });
       });
-  //   });
-  // });
+    });
+  });
 };

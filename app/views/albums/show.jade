@@ -1,0 +1,14 @@
+extends ../shared/template
+
+block content
+  h1= album[0].albumName
+  img#album-main-image(src='/img/#{album[0].artistName}/#{album[0].albumName}/#{album[0].albumPhoto}')
+
+  .songs-container
+    each song in songs
+      .song
+        .song-name #{song.songName}
+        //- .artist-image
+        //-   img(src='/img/#{song.artistName}/#{song.artistPhoto}')
+        .audio
+          audio(src='/audios/#{song.artistName}/#{song.albumName}/#{song.songFile}', type='audio/mp3', controls=true)
