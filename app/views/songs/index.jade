@@ -1,7 +1,15 @@
 extends ../shared/template
 
 block content
-  h1 Songs
+  .song-controls
+    h1#songs-main-header Songs
+    form(method='GET', action='/songs/sort')
+      select.genre-filter(name='genre')
+        option Genre
+        each genre in genres
+          option= genre
+      button.button.button-border#filter-button Filter
+
 
   .songs-container
     each song in songs

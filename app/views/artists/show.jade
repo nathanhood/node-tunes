@@ -1,10 +1,13 @@
 extends ../shared/template
 
 block content
-  h1= artist[0].artistName
-  .artist-image
-    img(src='/img/#{song.artistName}/#{song.artistPhoto}')
-  
+  h1#artist-main-header= artist[0].artistName
+  img#artist-main-image(src='/img/#{artist[0].artistName}/#{artist[0].artistPhoto}')
+
+  .songs-container
+    each song in songs
+      .song
+        .song-name #{song.songName}
         .album-image
           img(src='/img/#{song.artistName}/#{song.albumName}/#{song.albumPhoto}')
         .audio

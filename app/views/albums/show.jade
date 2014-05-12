@@ -1,7 +1,7 @@
 extends ../shared/template
 
 block content
-  h1= album[0].albumName
+  h1#artist-main-header= album[0].albumName
   img#album-main-image(src='/img/#{album[0].artistName}/#{album[0].albumName}/#{album[0].albumPhoto}')
 
   .songs-container

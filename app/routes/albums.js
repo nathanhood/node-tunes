@@ -30,9 +30,9 @@ exports.create = (req, res)=>{
         album.albumPhoto = (p.originalFilename);
       });
 
-      albums.save(album, ()=>res.redirect('/'));
+      albums.save(album, ()=>res.redirect('/confirm'));
     }else{
-      res.redirect('/');
+      res.redirect('/error');
     }
   });
 };

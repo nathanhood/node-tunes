@@ -5,15 +5,22 @@
 var fs = require('fs');
 var path = require('path');
 var multiparty = require('multiparty');
+var _ = require('lodash');
 var songs = global.nss.db.collection('songs');
 var albums = global.nss.db.collection('albums');
 var artists = global.nss.db.collection('artists');
 
 exports.index = (req, res)=>{
   songs.find().toArray((err, songs)=>{
-    res.render('songs/index', {songs: songs, albums: albums, artists: artists, title: 'Node Tunes: Songs'});
+    var genres = [];
+    _(songs).forEach(song=>song.genres.forEach(g=>genres.push(g)));
+    var uniqueGenres = _.unique(genres);
+
+    res.render('songs/index', {songs: songs, genres: uniqueGenres, albums: albums, artists: artists, title: 'Node Tunes: Songs'});
   });
 };
+
+
 
 exports.create = (req, res)=>{
   var form = new multiparty.Form();
@@ -52,11 +59,27 @@ exports.create = (req, res)=>{
         if(!fs.existsSync(`${__dirname}/../static/audios/${artistName}/${albumName}`)){
           fs.mkdirSync(`${__dirname}/../static/audios/${artistName}/${albumName}`);
         }
-        
+
         fs.renameSync(files.songFile[0].path, `${__dirname}/../static/audios/${artistName}/${albumName}/${normalized}${extension}`);
         songs.save(song, ()=>res.redirect('/confirm'));
 
       });
+    });
+  });
+};
+
+
+
+exports.filter = (req, res)=>{
+  var genre = req.query.genre;
+
+  songs.find({genres: genre}).toArray((err, songsRefined)=>{
+    songs.find().toArray((err, songs)=>{
+      var genres = [];
+      _(songs).forEach(song=>song.genres.forEach(g=>genres.push(g)));
+      var uniqueGenres = _.unique(genres);
+
+      res.render('songs/index', {songs: songsRefined, genres: uniqueGenres, albums: albums, artists: artists, title: 'Node Tunes: Songs'});
     });
   });
 };

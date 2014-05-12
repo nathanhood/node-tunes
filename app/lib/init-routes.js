@@ -33,6 +33,7 @@ function load(app, fn){
   app.get('/albums/:id', dbg, albums.show);
 
   app.get('/songs', dbg, songs.index);
+  app.get('/songs/sort', dbg, songs.filter);
   app.post('/songs', dbg, songs.create);
 
   console.log('Routes Loaded');
